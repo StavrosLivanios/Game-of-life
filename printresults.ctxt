@@ -1,0 +1,6 @@
+#BlueJ class context
+comment0.params=map\ plants\ y\ x\ turn
+comment0.target=printresults(java.lang.String[][],\ boolean[][],\ int,\ int,\ int)
+comment1.params=fu\ turn\ deathfoodf1\ deathfoodf2\ deathfoods1\ deathfoods2\ metr\ metrs1\ metrs2\ metrf1\ metrf2\ eatenfromf2\ eatenfromf1
+comment1.target=printresults(float,\ int,\ int,\ int,\ int,\ int,\ int,\ int,\ int,\ int,\ int,\ int,\ int)
+numComments=2

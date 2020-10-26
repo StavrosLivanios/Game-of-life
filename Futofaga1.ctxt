@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.params=life\ hunger\ z\ k\ f\ i
+comment0.target=Futofaga1(int,\ int,\ int,\ int,\ int,\ int)
+comment1.params=
+comment1.target=int\ steps()
+comment2.params=
+comment2.target=int\ pregnancy()
+comment3.params=
+comment3.target=int\ food()
+numComments=4

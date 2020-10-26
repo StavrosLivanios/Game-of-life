@@ -1,0 +1,369 @@
+import java.util.Random;
+import java.util.*;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+public class Main
+{
+      static int metrs1=0,metrs2=0,metrf1=0,metrf2=0;// metrites kathe eidous zwou.
+    
+    public static void main (String[] args){
+       // try{
+        int x=1000,y=1000;//diastaseis pinaka. 
+        boolean flag0=true;
+        int ranu;//xrhsimopoihte sthn random.
+        int i,j;//metavlhtes tis for().
+        int f;
+        int g;
+        int metr2;//metriths futwn.
+        int metrs=1;//metriths sarkofagwn.
+        int  metr=0;//metriris olwn twn zwwn.
+        float h;
+        Scanner scan= new Scanner(System.in);
+                
+      do{
+          JOptionPane.showMessageDialog(null, "dwse diastaseis pinaka toulaxiston 10 koutakia");
+        do{
+            String first=JOptionPane.showInputDialog("dwse x megalutero tou 2 kai mikrotero tou 1000");
+            try{
+             x=Integer.parseInt(first);
+                }catch(NumberFormatException e){JOptionPane.showMessageDialog(null,"den dwthikan akeraioi arithmoi ws diastaseis tou pinaka(x)");
+                }
+             if (x<2 || x>1000)
+             JOptionPane.showMessageDialog(null,"to x pou dothike arithmo den threi thn sunthikh");
+           }while(x<2 || x>=1000);
+        do{
+           String second=JOptionPane.showInputDialog("dwse y megalutero tou 2 kai mikrotero tou 1000");
+            try{ 
+             y=Integer.parseInt(second);
+            }catch (NumberFormatException e){JOptionPane.showMessageDialog(null,"den dwthikan akeraioi arithmoi ws diastaseis tou pinaka(y)");
+                }
+                if (y<2 || y>1000)
+             JOptionPane.showMessageDialog(null,"to y pou dothike arithmo den threi thn sunthikh");
+             }while(y<2 || y>=1000);
+         } while(x*y<10);
+        //===============================================
+       //-------------DHMIOURGIA PINAKA FUTWN-----------
+        Random rp = new Random();
+        boolean [][] plants = new boolean[x][y];
+       //Dialegoume mesw mias metablhths random an tha uparxei futo h' oxi se kathena apo ta kelia tou pinaka.  
+        do{
+        metr2=0;
+        for(i=0;i<x;i++){
+            for(j=0;j<y;j++){
+            ranu = rp.nextInt(2);
+            if (ranu==0)
+            plants[i][j]=false;
+            else 
+            plants[i][j]=true;
+            metr2++;
+           }
+        }
+       }while(metr2<(x*y)*0.2);//periorismos posostou twn futwn ston pinaka (megalhtero tou 20%).
+       
+        //-------------dhmiourgia twn zwwn ----------------
+        do{
+        ranu = rp.nextInt(x*y);//edw kanoume random generate ton arithmo ton arxikwn zwwn.
+       }while(ranu>(x*y)*0.45 || ranu<(x*y)*0.2);
+    
+        Animals[] pa = new Animals[x*y];
+        ArrayList<Animals> al=new ArrayList<Animals>();
+        int metrz=0;
+        int m,n,m1,m2,n1,n2;
+        //diairesh tou arithmou twn zwwn se epimerous kathgories (sarkofaga,futofaga).
+        m=ranu/2;
+        n=ranu-m;
+        //diairesh tou arithmou twn sarkofagwn se epimerous kathgories (sarkofaga1,sarkofaga2).
+        m1=m/2;
+        m2=m-m1; 
+        //diairesh tou arithmou twn futofagwn se epimerous kathgories (futofaga1,futofaga2).
+        n1=n/2;
+        n2=n-n1;
+
+      //m=sarkofaga 
+      //n=futofaga
+      //
+      //m1=sarkofaga1 
+      //n1=futofaga1
+      //
+      //m2=sarkofaga2 
+      //n2=futofaga2
+      //      
+      //sarkofaga--> 1
+      //futofaga --> 2
+      //
+      //sarkofaga 1 -->1
+      //sarkofaga 2 -->2
+      //
+      //futofaga 1 -->1
+      //futofaga 2 -->2
+       
+      
+      //Dhmiourgia twn arxikwn zwwn ston pinaka kai sthn lista kai kathorismos tou eidous tous. 
+        for(j=0;j<n1;j++){
+           metrz++;
+           pa[metrz-1]= new Futofaga1(0,0,0,0,2,1);
+           al.add(pa[metrz-1]);   
+                
+           al.get(metrz-1).setspecies(2,1);
+                 
+        }
+       metrz=metrz-1;
+
+        for(j=0;j<m1;j++){
+             metrz++;
+             pa[metrz]= new Sarkofaga1(0,0,0,0,1,1);
+             al.add(pa[metrz]);
+                
+             al.get(metrz).setspecies(1,1);
+                 
+        }
+
+        for(j=0;j<n2;j++){
+            metrz++;
+            pa[metrz]= new Futofaga2(0,0,0,0,2,2);
+            al.add(pa[metrz]);
+                 
+            al.get(metrz).setspecies(2,2);
+              
+        }
+            
+            
+        for(j=0;j<m2;j++){
+             metrz++;
+             pa[metrz]= new Sarkofaga2(0,0,0,0,1,2);
+             al.add(pa[metrz]);
+                 
+             al.get(metrz).setspecies(1,2);
+                 
+        }
+             //=========================entaksh twn arxikwn antikeimenwn se theseis ths listas=====================================
+        boolean c=false;
+        boolean v;
+      //Elagxos gia kenh thesh sthn lista kai kathorismos twn suntetagmenwn tous.
+      while(c==false) {
+            f=rp.nextInt(x);
+            g=rp.nextInt(y);  
+            v=true;
+            j=0;               
+            while(v==true && j<al.size()){
+                  if (al.get(j).getx()==f && al.get(j).gety()==g  ){
+                      v=false;
+                  }
+                  j++;
+            }
+                   
+            if(v==true){
+               al.get(metr).setposition(f,g);
+               metr++;
+            }
+
+        if(metr==ranu) {c=true;}
+            
+      }
+      metr=metr-1;
+      
+    
+      String [][] map = new String [x][y];
+      int o,p;
+     //=====================================================DHMIOURGIA GURWN===========================================================
+     int turn=1;
+     int metrflag;   
+     String qwer;
+     //elegxei an exoun teliwsei ta futa h' ta sarkofaga wste na stamathsei to programma.        
+     while(metrs!=0 && metr2!=0 ){
+          metrs=0;
+          metr2=0;
+        
+          if(turn>1){
+             System.out.println("pathse ENTER gia ton epomeno guro");
+             qwer=scan.nextLine();
+          }
+        
+        //======================================================dhmiourgia tou pinaka ton string ==========================================
+        //Dhmiourgia tou pinaka twn futwn.
+        for(i=0;i<x;i++){
+            for(j=0;j<y;j++){
+               if(plants[i][j]==true)
+                  map[i][j]="x ";
+               else 
+                  map[i][j]="  ";
+             }
+           }
+        // s1=sarkofago 1 ,s2=sarkofago 2 
+        // f1=futofago 1, f2= futofago 2 
+        // sarkofaga=1, futofaga=2
+        //Dhmiourgia tou pinaka twn zwwn.
+        for(i=0;i<al.size();i++){
+            o= al.get(i).getx();
+            p= al.get(i).gety();
+                   
+            if(al.get(i).geti()==1 && al.get(i).getf()==1 ){//elegxos eidous
+               map[o][p]="s1";
+               metrs++;
+               metrs1++;
+            }
+            else if(al.get(i).geti()==2 && al.get(i).getf()==1 ){//elegxos eidous
+                     map[o][p]="s2";
+                     metrs++;
+                     metrs2++;
+            }
+            else if(al.get(i).geti()==1 && al.get(i).getf()==2 ){//elegxos eidous
+                     map[o][p]="f1";
+                     metrf1++;
+            }
+            else if(al.get(i).geti()==2 && al.get(i).getf()==2 ){//elegxos eidous
+                     map[o][p]="f2";
+                     metrf2++;
+            }
+        }
+                
+       //=================telos dhmiourgias tou pinaka twn string==========================================
+       
+       //elegxontas to turn%2 exoume thn dunatothta na prospelavnoume kai anapoda thn lista me ta zwa wste na ginetai to programma pio antokeimeniko.
+        if(turn%2==0){
+         //=================edw kalite h methodos gia thn khnish twn zwwn.
+          for(i=0;i<al.size() ;i++){   
+              al.get(i).move(al.get(i).getx(),al.get(i).gety(),x,y,al,map,plants,al.get(i).steps());  
+          }
+             
+              
+         //edw kalite h methodos gia thn genhsh twn zwwn.
+         if(turn>=2 && al.size()<x*y ){
+            metrflag=al.size();
+            for(i=0;i<metrflag ;i++){    
+               if (al.get(i).geti()==1 && al.get(i).getf()==1 && al.size()<x*y){
+                      al.get(i).birth(al.get(i).getx(),al.get(i).gety(),x,y,al,pa,map,metrs1);  
+                       }
+               else  if (al.get(i).geti()==2 && al.get(i).getf()==1 && al.size()<x*y){
+                      al.get(i).birth(al.get(i).getx(),al.get(i).gety(),x,y,al,pa,map,metrs2);}   
+               else if (al.get(i).geti()==1 && al.get(i).getf()==2 && al.size()<x*y){
+                      al.get(i).birth(al.get(i).getx(),al.get(i).gety(),x,y,al,pa,map,metrf1);   
+                      }
+               else  if (al.get(i).geti()==2 && al.get(i).getf()==2 && al.size()<x*y){
+                      al.get(i).birth(al.get(i).getx(),al.get(i).gety(),x,y,al,pa,map,metrf2);  
+                      }
+           }
+         }
+ 
+        
+         // edw kalite h methodos eat.  
+            if(turn>=2){
+             for(i=0;i<al.size();i++){
+                if(al.get(i).getf()==1)
+                   al.get(i).eat( al.get(i).getx(),al.get(i).gety(),map,x, y,al,metrs1,metrs2,metrf1,metrf2);     
+                else if(al.get(i).getf()==2)
+                    al.get(i).eat(al.get(i).getx(),al.get(i).gety(),map,x, y,plants,al,metrf1,metrf2); 
+             }
+         }
+       
+          
+         }
+        //elegxos tou (turn%2!=0) gia thn anapodh prospelash ths listas.   
+        else{
+         //edw kalite h methodos gia thn khnish twn zwwn.
+         for(i=al.size()-1;i>=0 ;i--){   
+                 al.get(i).move(al.get(i).getx(),al.get(i).gety(),x,y,al,map,plants,al.get(i).steps());  
+         }
+         
+         //edw kalite h methodos gia thn genhsh twn zwwn.
+            if(turn>=2 && al.size()<x*y ){
+                metrflag=al.size();
+            for(i=metrflag-1;i>=0 ;i--){    
+               if (al.get(i).geti()==1 && al.get(i).getf()==1 && al.size()<x*y){
+                      al.get(i).birth(al.get(i).getx(),al.get(i).gety(),x,y,al,pa,map,metrs1);  
+                       }
+               else  if (al.get(i).geti()==2 && al.get(i).getf()==1 && al.size()<x*y){
+                      al.get(i).birth(al.get(i).getx(),al.get(i).gety(),x,y,al,pa,map,metrs2);}   
+               else if (al.get(i).geti()==1 && al.get(i).getf()==2 && al.size()<x*y){
+                      al.get(i).birth(al.get(i).getx(),al.get(i).gety(),x,y,al,pa,map,metrf1);   
+                      }
+               else  if (al.get(i).geti()==2 && al.get(i).getf()==2 && al.size()<x*y){
+                      al.get(i).birth(al.get(i).getx(),al.get(i).gety(),x,y,al,pa,map,metrf2);  
+                      }
+           }
+         }
+         //edw kalite h methodos eat.
+           if(turn>=2){
+                  for(i=al.size()-1;i>=0 ;i--){
+                    
+                 if(al.get(i).getf()==1)
+                     al.get(i).eat( al.get(i).getx(),al.get(i).gety(),map,x, y,al,metrs1,metrs2,metrf1,metrf2);     
+                 else if(al.get(i).getf()==2)
+                         al.get(i).eat(al.get(i).getx(),al.get(i).gety(),map,x, y,plants,al,metrf1,metrf2); 
+           }
+         }
+        
+       }
+            
+       //==========================================dhmiourgia tou pinaka twn string meta tis energies twn zwwn. ============================================
+       //dhmiourgia tou pinaka twn futwn.
+        for(i=0;i<x;i++){
+            for(j=0;j<y;j++){
+                if(plants[i][j]==true){
+                   map[i][j]="x ";
+                   metr2++;
+                }
+                else 
+                    map[i][j]="  ";
+            }
+        }
+        metrs1=0;
+        metrs2=0;
+        metrf1=0;
+        metrf2=0;
+        //dhmiourgia tou pinaka twn zwwn.
+        for(i=0;i<al.size();i++){
+            o= al.get(i).getx();
+            p= al.get(i).gety();
+                   
+            if (al.get(i).geti()==1 && al.get(i).getf()==1 ){
+                map[o][p]="s1";
+                metrs++;
+                metrs1++;
+            }
+            else  if (al.get(i).geti()==2 && al.get(i).getf()==1 ){
+                      map[o][p]="s2";
+                      metrs++;
+                      metrs2++;
+            }
+            else if (al.get(i).geti()==1 && al.get(i).getf()==2 ){
+                     map[o][p]="f1";
+                     metrf1++;
+            }
+            else  if (al.get(i).geti()==2 && al.get(i).getf()==2 ){
+                      map[o][p]="f2";
+                      metrf2++;        
+            }
+        }
+         
+       //emfanish apotelesmatwn
+       printresults kati= new printresults(map,plants,y,x,turn);  
+       kati.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+       kati.pack();
+       kati.setSize(600,600);
+       kati.setVisible(true);
+       h=(metr2*100)/(x*y);
+       printresults emfanish2= new printresults(h,turn,Animals.getdeathfoodf1(),Animals.getdeathfoodf2(),Animals.getdeathfoods1(),Animals.getdeathfoods2(),al.size(),metrs1,metrs2,metrf1,metrf2,Animals.geteatenfromf2(),Animals.geteatenfromf1());  
+       emfanish2.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+       emfanish2.pack();
+       emfanish2.setSize(600,600);
+       emfanish2.setVisible(true);
+          
+       //========telos gurou ====
+       //Mhdenismos twn metrhtwn tou gurou.      
+       metrs1=0;
+       metrs2=0;
+       metrf1=0;
+       metrf2=0;
+       turn++;
+       Animals.seteatenfromf1(0);
+       Animals.seteatenfromf2(0);
+       Animals.setdeathfoodf1(0);
+       Animals.setdeathfoodf2(0);
+       Animals.setdeathfoods1(0);
+       Animals.setdeathfoods2(0);
+      }    
+                        
+                    
+    } 
+}

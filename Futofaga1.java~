@@ -1,0 +1,24 @@
+import java.util.*;import java.util.Random;
+class Futofaga1 extends Futofaga{
+    private int pregnancy=3;
+    private int food=2;
+    private int steps=4; 
+    private int i=0;
+    private boolean flag=true;
+                    public Futofaga1 (int life,int hunger,int z,int k,int f ,int i){
+        super(life,hunger,z,k,f,i);
+    }
+
+        public int steps(){
+        return steps;
+    }
+    
+            public int pregnancy(){
+        return pregnancy;
+    }
+    
+            public int food(){
+        return food;
+    }
+    
+}

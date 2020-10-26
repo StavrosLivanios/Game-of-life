@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.params=life\ hunger\ z\ k\ f\ i
+comment0.target=Sarkofaga(int,\ int,\ int,\ int,\ int,\ int)
+comment1.params=
+comment1.target=int\ food()
+comment2.params=
+comment2.target=int\ steps()
+comment3.params=
+comment3.target=int\ pregnancy()
+comment4.params=pos1\ pos2\ map\ x\ y\ al\ metrs1\ metrs2\ metrf1\ metrf2
+comment4.target=void\ eat(int,\ int,\ java.lang.String[][],\ int,\ int,\ java.util.ArrayList,\ int,\ int,\ int,\ int)
+numComments=5

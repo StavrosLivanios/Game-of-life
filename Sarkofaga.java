@@ -1,0 +1,363 @@
+import java.util.*;
+abstract class Sarkofaga extends Animals{
+  private int i;
+  private boolean flag; 
+
+    public Sarkofaga (int life,int hunger,int z,int k,int f ,int i){
+        super(life,hunger,z,k,f,i);
+    }
+  
+     abstract int food();
+     abstract int steps();
+     abstract int pregnancy();
+  
+  
+  
+  public void eat(int pos1,int pos2,String map[][],int x,int y,ArrayList<Animals> al,int metrs1,int metrs2,int metrf1,int metrf2){  
+    
+    i=0;
+    flag=true;
+    boolean flag0=false;  
+    if(i<al.size()){
+       if (pos1+1<x && flag0==false){//Elegxei an h suntetagmenh auth vrisketai entos tou pinaka kai an to flag0 einai false.
+        if(map[pos1+1][pos2]=="f1" || map[pos1+1][pos2]=="f2"){//Elegxei an to keli auto einai periexei futofago1 h' futofago2.
+
+         i=0;
+         while(flag==true && i<al.size()){
+            if (pos1+1==al.get(i).getx() && pos2==al.get(i).gety()){//Elegxei an uparxei sthn lista antikeimeno me autes tis suntetagmenes kai to afairei apo auth.
+                 al.remove(i);
+                 flag=false;
+                }
+            i++;
+         }   
+         
+
+         i=0;
+         while(flag==false){
+            if (pos1==al.get(i).getx() && pos2==al.get(i).gety()){//Elegxei an uparxei sthn lista antikeimeno me tis arxikes suntetagmenes kai mhdenizei tous gurous pou exei na faei.
+                 al.get(i).hunger(0);
+                 flag=true;
+                 flag0=true; 
+                }
+            i++;
+         }
+          
+         if (flag0==true ){
+             //Elegxei an to keli auto einai periexei futofago1 h' futofago2 kai analoga auksanei to plhthos twn antistoixwn futofagwn pou fagothikan 
+             //kai meiwnei ton metrhth twn antistoixwn futofagwn.
+            if(map[pos1+1][pos2]=="f1"){
+               seteatenfromf1(geteatenfromf1()+1);
+               metrf1--;}
+            else if (map[pos1+1][pos2]=="f2"){
+                 seteatenfromf2(geteatenfromf2()+1);
+                metrf2--;
+            }
+
+            map[pos1+1][pos2]="  ";
+         }
+          
+        }
+      }
+      if (pos1+1<x && pos2+1<y &&  flag0==false){//Elegxei an oi suntetagmenes autes vriskontai entos tou pinaka kai an to flag0 einai false.
+        if(map[pos1+1][pos2+1]=="f1" || map[pos1+1][pos2+1]=="f2"){//Elegxei an to keli auto einai periexei futofago1 h' futofago2.
+
+         i=0;
+          while(flag==true && i<al.size()){
+            if (pos1+1==al.get(i).getx() && pos2+1==al.get(i).gety()){//Elegxei an uparxei sthn lista antikeimeno me autes tis suntetagmenes kai to afairei apo auth.
+                 al.remove(i);
+                 flag=false;
+                }
+            i++;
+          }   
+
+         i=0;
+          while(flag==false){
+            if (pos1==al.get(i).getx() && pos2==al.get(i).gety()){//Elegxei an uparxei sthn lista antikeimeno me tis arxikes suntetagmenes kai mhdenizei tous gurous pou exei na faei.
+                 al.get(i).hunger(0);
+                 flag=true;
+                 flag0=true; 
+                }
+            i++;
+          }
+          
+         if (flag0==true ){
+             //Elegxei an to keli auto einai periexei futofago1 h' futofago2 kai analoga auksanei to plhthos twn antistoixwn futofagwn pou fagothikan 
+             //kai meiwnei ton metrhth twn antistoixwn futofagwn.
+            if(map[pos1+1][pos2+1]=="f1"){
+              seteatenfromf1(geteatenfromf1()+1);
+               metrf1--;}
+            else if (map[pos1+1][pos2+1]=="f2"){
+                 seteatenfromf2(geteatenfromf2()+1);
+                metrf2--;
+            }
+
+            map[pos1+1][pos2+1]="  ";
+         }
+          
+        }
+      }
+      if (pos2+1<y && flag0==false){//Elegxei an h suntetagmenh auth vrisketai entos tou pinaka kai an to flag0 einai false.
+         if(map[pos1][pos2+1]=="f1" || map[pos1][pos2+1]=="f2"){//Elegxei an to keli auto einai periexei futofago1 h' futofago2.
+
+         i=0;
+          while(flag==true && i<al.size()){
+            if (pos1==al.get(i).getx() && pos2+1==al.get(i).gety()){//Elegxei an uparxei sthn lista antikeimeno me autes tis suntetagmenes kai to afairei apo auth.
+                 al.remove(i);
+                 flag=false;
+                }
+            i++;
+          }   
+
+         i=0;
+          while(flag==false){
+            if (pos1==al.get(i).getx() && pos2==al.get(i).gety()){//Elegxei an uparxei sthn lista antikeimeno me tis arxikes suntetagmenes kai mhdenizei tous gurous pou exei na faei.
+                 al.get(i).hunger(0);
+                 flag=true;
+                 flag0=true; 
+                }
+            i++;
+          }
+          
+         if (flag0==true ){
+             //Elegxei an to keli auto einai periexei futofago1 h' futofago2 kai analoga auksanei to plhthos twn antistoixwn futofagwn pou fagothikan 
+             //kai meiwnei ton metrhth twn antistoixwn futofagwn.
+            if(map[pos1][pos2+1]=="f1"){
+                      seteatenfromf1(geteatenfromf1()+1);
+               metrf1--;}
+            else if (map[pos1][pos2+1]=="f2"){
+                  seteatenfromf2(geteatenfromf2()+1);
+                metrf2--;
+            }
+              
+            map[pos1][pos2+1]="  ";
+         }
+          
+        }
+        }
+      if (pos1-1>0 && pos2+1<y && flag0==false){//Elegxei an oi suntetagmenes autes vriskontai entos tou pinaka kai an to flag0 einai false.
+         if(map[pos1-1][pos2+1]=="f1" || map[pos1-1][pos2+1]=="f2"){//Elegxei an to keli auto einai periexei futofago1 h' futofago2.
+         i=0;
+          while(flag==true && i<al.size()){
+            if (pos1-1==al.get(i).getx() && pos2+1==al.get(i).gety()){//Elegxei an uparxei sthn lista antikeimeno me autes tis suntetagmenes kai to afairei apo auth.
+                 al.remove(i);
+                 flag=false;
+                }
+            i++;
+          }   
+
+         i=0;
+          while(flag==false){
+            if (pos1==al.get(i).getx() && pos2==al.get(i).gety()){//Elegxei an uparxei sthn lista antikeimeno me tis arxikes suntetagmenes kai mhdenizei tous gurous pou exei na faei.
+                 al.get(i).hunger(0);
+                 flag=true;
+                 flag0=true; 
+                }
+            i++;
+          }
+          
+         if (flag0==true ){
+             //Elegxei an to keli auto einai periexei futofago1 h' futofago2 kai analoga auksanei to plhthos twn antistoixwn futofagwn pou fagothikan 
+             //kai meiwnei ton metrhth twn antistoixwn futofagwn.
+            if(map[pos1-1][pos2+1]=="f1"){
+                seteatenfromf1(geteatenfromf1()+1);
+               metrf1--;}
+            else if (map[pos1-1][pos2+1]=="f2"){
+                seteatenfromf2(geteatenfromf2()+1);
+                metrf2--;
+            }
+              
+            map[pos1-1][pos2+1]="  ";
+         }
+          
+            }
+        }
+      if (pos1-1>0 && flag0==false){//Elegxei an h suntetagmenh auth vrisketai entos tou pinaka kai an to flag0 einai false.
+         if(map[pos1-1][pos2]=="f1" || map[pos1-1][pos2]=="f2"){//Elegxei an to keli auto einai periexei futofago1 h' futofago2.
+
+         i=0;
+          while(flag==true && i<al.size()){
+            if (pos1-1==al.get(i).getx() && pos2==al.get(i).gety()){//Elegxei an uparxei sthn lista antikeimeno me autes tis suntetagmenes kai to afairei apo auth.
+                 al.remove(i);
+                 flag=false;
+                }
+            i++;
+          }   
+
+         i=0;
+          while(flag==false){
+            if (pos1==al.get(i).getx() && pos2==al.get(i).gety()){//Elegxei an uparxei sthn lista antikeimeno me tis arxikes suntetagmenes kai mhdenizei tous gurous pou exei na faei.
+                 al.get(i).hunger(0);
+                 flag=true;
+                 flag0=true; 
+                }
+            i++;
+          }
+          
+         if (flag0==true ){
+             //Elegxei an to keli auto einai periexei futofago1 h' futofago2 kai analoga auksanei to plhthos twn antistoixwn futofagwn pou fagothikan 
+             //kai meiwnei ton metrhth twn antistoixwn futofagwn.
+            if(map[pos1-1][pos2]=="f1"){
+                seteatenfromf1(geteatenfromf1()+1);
+               metrf1--;}
+            else if (map[pos1-1][pos2]=="f2"){
+                  seteatenfromf2(geteatenfromf2()+1);
+                metrf2--;
+            }
+             
+            map[pos1-1][pos2]="  ";
+         }
+          
+         }
+      }
+      if (pos1-1>0 && pos2-1>0 && flag0==false){//Elegxei an oi suntetagmenes autes vriskontai entos tou pinaka kai an to flag0 einai false.
+         if(map[pos1-1][pos2-1]=="f1" || map[pos1-1][pos2-1]=="f2"){//Elegxei an to keli auto einai periexei futofago1 h' futofago2.
+
+         i=0;
+          while(flag==true && i<al.size()){
+            if (pos1-1==al.get(i).getx() && pos2-1==al.get(i).gety()){//Elegxei an uparxei sthn lista antikeimeno me autes tis suntetagmenes kai to afairei apo auth.
+                 al.remove(i);
+                 flag=false;
+                 flag0=true; 
+                }
+            i++;
+          }   
+
+         i=0;
+          while(flag==false){
+            if (pos1==al.get(i).getx() && pos2==al.get(i).gety()){//Elegxei an uparxei sthn lista antikeimeno me tis arxikes suntetagmenes kai mhdenizei tous gurous pou exei na faei.
+                 al.get(i).hunger(0);
+                 flag=true;
+                }
+            i++;
+          }
+          
+         if (flag0==true ){
+             //Elegxei an to keli auto einai periexei futofago1 h' futofago2 kai analoga auksanei to plhthos twn antistoixwn futofagwn pou fagothikan 
+             //kai meiwnei ton metrhth twn antistoixwn futofagwn.
+            if(map[pos1-1][pos2-1]=="f1"){
+               seteatenfromf1(geteatenfromf1()+1);
+               metrf1--;}
+            else if (map[pos1-1][pos2-1]=="f2"){
+                 seteatenfromf2(geteatenfromf2()+1);
+                metrf2--;
+            }
+             
+            map[pos1-1][pos2-1]="  ";
+         }
+          
+         }
+      }
+      if (pos2-1>0 && flag0==false){//Elegxei an h suntetagmenh auth vrisketai entos tou pinaka kai an to flag0 einai false.
+         if(map[pos1][pos2-1]=="f1" || map[pos1][pos2-1]=="f2"){//Elegxei an to keli auto einai periexei futofago1 h' futofago2.
+ 
+         i=0;
+           while(flag==true && i<al.size()){
+            if (pos1==al.get(i).getx() && pos2-1==al.get(i).gety()){//Elegxei an uparxei sthn lista antikeimeno me autes tis suntetagmenes kai to afairei apo auth.
+                 al.remove(i);
+                 flag=false;
+                }
+            i++;
+          }   
+
+         i=0;
+          while(flag==false){
+            if (pos1==al.get(i).getx() && pos2==al.get(i).gety()){//Elegxei an uparxei sthn lista antikeimeno me tis arxikes suntetagmenes kai mhdenizei tous gurous pou exei na faei.
+                 al.get(i).hunger(0);
+                 flag=true;
+                 flag0=true; 
+                }
+            i++;
+          }
+          
+          
+         if (flag0==true ){
+             //Elegxei an to keli auto einai periexei futofago1 h' futofago2 kai analoga auksanei to plhthos twn antistoixwn futofagwn pou fagothikan 
+             //kai meiwnei ton metrhth twn antistoixwn futofagwn.
+            if(map[pos1][pos2-1]=="f1"){
+               seteatenfromf1(geteatenfromf1()+1);
+               metrf1--;}
+            else if (map[pos1][pos2-1]=="f2"){
+                  seteatenfromf2(geteatenfromf2()+1);
+                metrf2--;
+            }
+             
+            map[pos1][pos2-1]="  ";
+         }
+          
+          
+         }
+      }
+      if (pos1+1<x && pos2-1>0 && flag0==false){//Elegxei an oi suntetagmenes autes vriskontai entos tou pinaka kai an to flag0 einai false.
+         if(map[pos1+1][pos2-1]=="f1" || map[pos1+1][pos2-1]=="f2"){//Elegxei an to keli auto einai periexei futofago1 h' futofago2.
+
+         i=0;
+            while(flag==true && i<al.size()){
+            if (pos1+1==al.get(i).getx() && pos2-1==al.get(i).gety()){//Elegxei an uparxei sthn lista antikeimeno me autes tis suntetagmenes kai to afairei apo auth.
+                 al.remove(i);
+                 flag=false;
+                }
+            i++;
+          }   
+         
+         i=0;
+            while(flag==false){
+            if (pos1==al.get(i).getx() && pos2==al.get(i).gety()){//Elegxei an uparxei sthn lista antikeimeno me tis arxikes suntetagmenes kai mhdenizei tous gurous pou exei na faei.
+                 al.get(i).hunger(0);
+                 flag=true;
+                 flag0=true;
+                }
+            i++;
+          }
+          
+          
+          if (flag0==true ){
+              //Elegxei an to keli auto einai periexei futofago1 h' futofago2 kai analoga auksanei to plhthos twn antistoixwn futofagwn pou fagothikan 
+             //kai meiwnei ton metrhth twn antistoixwn futofagwn.
+             if(map[pos1+1][pos2-1]=="f1"){
+               seteatenfromf1(geteatenfromf1()+1);
+               metrf1--;}
+            else if (map[pos1+1][pos2-1]=="f2"){
+                seteatenfromf2(geteatenfromf2()+1);
+               metrf2--;
+            }
+              
+            map[pos1+1][pos2-1]="  ";
+         }
+          
+        }
+      }
+      if(flag0==false){
+          i=0;
+          flag=false;
+          //Elegxei an uparxei sthn lista antikeimeno me autes tis suntetagmenes kai auksanei tous gurous pou exei na faei.
+          while(i<al.size() || flag==false){
+                if (pos1==al.get(i).getx() && pos2==al.get(i).gety()){ 
+                 flag=true;
+                }
+                i++;
+          }       
+                
+          al.get(i-1).hunger( al.get(i-1).gethunger()+1);   
+          //Elegxei an oi guroi pou exei na faei isounte me tous gurous pou antexei xwris trofh.          
+          if( al.get(i-1).gethunger()==al.get(i-1).food()){
+              //Elegxei to eidos tou sarkofagou kai analoga auksanei to plhthos twn antistoixwn sarkofagwn pou pethanan kai sthn sunexeia meiwnei ton metrhth twn antistoixwn sarkofagwn.
+
+             if (al.get(i-1).geti()==1 && al.get(i-1).getf()==1 ){
+                  setdeathfoods1(getdeathfoods1()+1);
+
+                  metrs1--;
+             }
+             else  if (al.get(i-1).geti()==2 && al.get(i-1).getf()==1 ){
+                      setdeathfoods2(getdeathfoods2()+1);
+
+                      metrs2--;
+             }
+             al.remove(i-1);//afaireitai to sigekrimeno stoixeio(sarkofago) apo thn lista.
+          }
+              
+      }
+            
+    }
+
+  }
+}

@@ -1,0 +1,25 @@
+import java.util.*;
+import java.util.Random;
+class Futofaga2 extends Futofaga{
+    private int pregnancy=2;//guroi pou xreiazetai na perasoun gia na genisei. 
+    private int food=2;//guroi pou  antexei xwris trofh.
+    private int steps=5;//kelia pou kounietai to zwo. 
+    private boolean flag=true;
+    private int i=0;
+                public Futofaga2 (int life,int hunger,int z,int k,int f ,int i){
+        super(life,hunger,z,k,f,i);
+    }
+   
+      public int steps(){
+        return steps;
+    }
+
+                public int pregnancy(){
+        return pregnancy;
+    }
+    
+            public int food(){
+        return food;
+    }
+    
+}
