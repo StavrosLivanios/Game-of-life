@@ -1,4 +1,4 @@
-# Game-of-life
+# Game-of-life 
 
 Simulation of environment with herbivores, carnivores and plants were the animals can
 move, give birth and eat each other. After the user enters the size of the grid(environment)
